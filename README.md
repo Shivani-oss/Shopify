@@ -1,23 +1,9 @@
-# WeForShe_Hackathon
+# Shopify
 
-## Steps
+This project is an complete e_commerce app name <<b>Shopify</b> build using reactjs, react-redux, react-router, expressjs, nodejs, mongodb and various other tech and frameworks
+used. 
+In this from from process like selection of product, validation in signin or register for user, store data of products, user(with authorize token), order no with their respective Id, shipping addresss and also payment method(all relevant information)  in database with the help of mongoose schema through mongoDB.
+  
+### Currently Processing / Ongoing ............................
 
-To run :
-
-Go to backend folder directory through terminal and run following commands
-
-1. npm install
-2. npm run
-
-### backend run in localhost:5000
-
-
-Then Go to Frontend folder directory through terminal and run following commands
-
-1. npm install
-2. npm run
-
-### front end run in localhost:3000
-
-See the e_commerce site in browser
 
