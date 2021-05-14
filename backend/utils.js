@@ -3,28 +3,28 @@ import jwt from 'jsonwebtoken'
 
 const getToken = (user) => {
   return jwt.sign({
-      _id: user._id,
-      name: user.name,
-      email: user.email, 
-  }, process.env.JWT_SECRET || 'secret',{
-      expiresIn: '30d',
-    })
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+  }, process.env.JWT_SECRET || 'secret', {
+    expiresIn: '30d',
+  })
 }
 
 export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization
-  if(authorization){
+  if (authorization) {
     const token = authorization.slice(7, authorization.length)  // starting from 7 index
     jwt.verify(token, process.env.JWT_SECRET || 'something secret', (err, decode) => {
-      if(err) {
-        res.status(401).send({ messages: 'Invalid Token'})
-      }else{
-          req.user = decode
-          next()
+      if (err) {
+        res.status(401).send({ messages: 'Invalid Token' })
+      } else {
+        req.user = decode
+        next()
       }
     })
   }
-  else{
+  else {
     res.status(401).send({ messages: 'No Token' })
   }
 
