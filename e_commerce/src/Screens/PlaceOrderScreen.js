@@ -9,7 +9,7 @@ import { ORDER_CREATE_RESET } from '../reducer/orderConstant.js'
 function PlaceOrderScreen(props) {
   const cart = useSelector(state => state.cart)
   if(!cart.paymentMethod){
-      props.history.push('./payment')
+    //   props.history.push('./payment')
   }
   const orderCreate = useSelector(state => state.orderCreate)
     const { loading, success, error, order} = orderCreate
@@ -38,10 +38,10 @@ function PlaceOrderScreen(props) {
                     <div classname="card card-body">
                         <h2>Shipping</h2>
                         <p>
-                            <strong>Name: </strong>{cart.shippingAddress.fullName}<br/>
+                            {/* <strong>Name: </strong>{cart.shippingAddress.fullName}<br/>
                             <strong>Address: </strong>{cart.shippingAddress.address},
                             {cart.shippingAddress.city},{cart.shippingAddress.postalCode},
-                            {cart.shippingAddress.country}
+                            {cart.shippingAddress.country} */}
                         </p>
                     </div>
                 </li>

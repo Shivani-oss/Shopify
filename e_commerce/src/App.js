@@ -24,7 +24,7 @@ function App() {
           <Route path="/register" component={RegisterScreen} />
           <Route path="/shipping" component={CheckoutSteps} />
           <Route path="/placeorder" component={PlaceOrderScreen} />
-          <Route path="/order/:id" component={OrderScreen} />
+          <Route path="shipping/order/:id" component={OrderScreen} />
         </Switch>
       </div>
     </Router>
