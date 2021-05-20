@@ -5,9 +5,10 @@ import CartScreen from './Screens/CartScreen'
 import SigninScreen from './Screens/SigninScreen'
 import RegisterScreen from './Screens/RegisterScreen'
 import Navbar from './components/Navbar'
-import CheckoutSteps from './Screens/CheckoutSteps'
+import PaymentMethodScreen from "./Screens/PaymentMethodScreen"
 import PlaceOrderScreen from "./Screens/PlaceOrderScreen"
 import OrderScreen from "./Screens/OrderScreen"
+import ShippingAddressScreen from './Screens/ShippingAddressScreen'
 
 
 
@@ -22,7 +23,8 @@ function App() {
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/signin" component={SigninScreen} />
           <Route path="/register" component={RegisterScreen} />
-          <Route path="/shipping" component={CheckoutSteps} />
+          <Route path="/shipping" component={ShippingAddressScreen} />
+          <Route path="/payment" component={PaymentMethodScreen} />
           <Route path="/placeorder" component={PlaceOrderScreen} />
           <Route path="shipping/order/:id" component={OrderScreen} />
         </Switch>

@@ -366,6 +366,7 @@ input {
   border-radius: 0.5rem;
 }
 
+
 /* Alert */
 .loading {
   display: block !important
@@ -415,6 +416,8 @@ input {
 .form-containerShipping{
   width: 100%;
   padding: 3rem;
+  display: table;
+  margin: auto;
 
 }
 .form-containerShipping label{
@@ -438,3 +441,8 @@ input {
  
 }
 
+.form-payment {
+  width: 100%;
+  padding: 3rem;
+
+}

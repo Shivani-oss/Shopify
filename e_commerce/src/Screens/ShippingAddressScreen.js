@@ -1,26 +1,32 @@
 import React,{useState}  from 'react'
 import {useDispatch, useSelector} from 'react-redux' 
 import { saveShippingAddress } from '../reducer/cartAction'
+import CheckoutSteps from './CheckoutSteps'
 
-function ShippingAddressScreen() {
-    const cart = useSelector(state => state.cart)
-    const {shippingAddress} = cart
-    
+function ShippingAddressScreen(props) {
+    const userSignin = useSelector(state => state.userSignin)
+    const { userInfo } = userSignin
     const [fullName, setFullName] = useState('')
     const [address, setAddress] =  useState('')
     const [city, setCity] = useState('')
     const [postalCode, setPostalCode] = useState('')
     const [country, setCountry] = useState('')
     const dispatch = useDispatch()
+    
 
+    if (!userInfo) {
+        props.history.push('/signin');
+    }
 
     const submitHandler = (e) => {
         e.preventDefault()
+        props.history.push('/payment')
         //dispatch shipping address
         dispatch(saveShippingAddress({fullName, address, city, postalCode, country}))
     }
     return (
         <div>
+            <CheckoutSteps step={1}/>
             <form onSubmit={submitHandler}>
                 <div className="form-containerShipping">
                 <div>
@@ -45,8 +51,8 @@ function ShippingAddressScreen() {
                 </div>
                 <div>
                     <label/>
-                    <button className="button primary" style={{width:100, marginLeft:-45, marginTop:25}} type="submit">
-                        Save
+                        <button className="button primary" style={{ width: 150, marginLeft: -45, marginTop: 25}} type="submit">
+                        Continue
                     </button>
                 </div>
                 </div>

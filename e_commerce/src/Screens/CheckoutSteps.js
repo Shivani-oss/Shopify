@@ -1,5 +1,4 @@
 import React from "react"
-import {useSelector} from 'react-redux' 
 import PropTypes from "prop-types"
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 import clsx from "clsx"
@@ -11,11 +10,7 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import StepConnector from "@material-ui/core/StepConnector"
 import LocalShippingIcon from '@material-ui/icons/LocalShipping'
-import Button from "@material-ui/core/Button"
-import Typography from "@material-ui/core/Typography"
-import ShippingAddressScreen from "./ShippingAddressScreen"
-import PaymentMethodScreen from "./PaymentMethodScreen"
-import PlaceOrderScreen from "./PlaceOrderScreen"
+import { Typography } from "@material-ui/core"
 
 
 
@@ -74,7 +69,7 @@ const useColorlibStepIconStyles = makeStyles({
 
 function ColorlibStepIcon(props) {
   const classes = useColorlibStepIconStyles()
-  const { active, completed } = props;
+  const { active, completed } = props
 
   const icons = {
     1: <AccountBoxIcon className={classes.icon}/>,
@@ -114,27 +109,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
   },
-  button: {
-    marginInlineStart: theme.spacing(25),
-     fontSize: 15,
-     padding: 2,
-     width: 100,
-     height: 40,
-     top:-75,
-  },
-  button1: {
-    marginInlineStart: theme.spacing(5),
-     fontSize: 15,
-     padding: 2,
-     width: 100,
-     height: 40,
-     top:-75,
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
+  font: {
+    fontSize: "2rem"
   }
-}));
+}))
 
 function getSteps() {
   return [
@@ -142,52 +120,23 @@ function getSteps() {
     "Shipping",
     "Payment",
     "Place Order"
-  ];
+  ]
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 1:
-      return <ShippingAddressScreen />
-    case 2:
-      return <PaymentMethodScreen />
-    case 3:
-      return <PlaceOrderScreen />
-    default:
-      return "Unknown step";
-  }
-}
+
 
 export default function CheckoutSteps(props) {
   const classes = useStyles()
-  const [activeStep, setActiveStep] = React.useState(1)
   const steps = getSteps()
-  const userSignin = useSelector(state => state.userSignin)
-  const {userInfo} = userSignin
-  const cart = useSelector(state => state.cart)
-  const {shippingAddress} = cart
-  
-  if(!userInfo) {
-        props.history.push('/signin')
-  }
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1)
-  }
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1)
-  }
-
-  const handleReset = () => {
-    setActiveStep(1);
-  }
-
+  const activeStep = props.step;
   return (
-      <div className={classes.root}>
+    <div className={classes.root}>
       <Stepper
         alternativeLabel
         activeStep={activeStep}
         connector={<ColorlibConnector />}
+        
       >
         {steps.map((label) => (
           <Step key={label}>
@@ -196,41 +145,7 @@ export default function CheckoutSteps(props) {
         ))}
       </Stepper>
       <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-            <div>
-              <Button
-                disabled={activeStep === 1}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button1}
-              >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </div>
-          </div>
-        )}
       </div>
-      </div>
-    
+    </div>
   )
 }
