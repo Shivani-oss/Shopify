@@ -6,7 +6,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     dispatch({ type: ORDER_CREATE_REQUEST, payload: order })
     try {
         const { userSignin: { userInfo } } = getState()
-        const { data } = await Axios.post('./api/orders', order, {
+        const { data } = await Axios.post('/api/orders', order, {
             headers: {
                 Authorization: `Bearer  ${userInfo.token}`,
             }
@@ -18,7 +18,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: ORDER_CREATE_FAIL, paylod: error.response && error.response.data.message
-                ? error.response.data.message : error.response
+                ? error.response.data.message : error.message
         })
     }
 }

@@ -5,17 +5,18 @@ import { createOrder } from '../reducer/orderAction.js'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
 import { ORDER_CREATE_RESET } from '../reducer/orderConstant.js'
+import CheckoutSteps from './CheckoutSteps.js'
 
 function PlaceOrderScreen(props) {
   const cart = useSelector(state => state.cart)
   if(!cart.paymentMethod){
-    //   props.history.push('./payment')
+    props.history.push('/payment')
   }
   const orderCreate = useSelector(state => state.orderCreate)
-    const { loading, success, error, order} = orderCreate
+  const { loading, success, error, order} = orderCreate
   const toPrice = (num) => Number(num.toFixed(2))  // 5.123 => "5.12" => 5.12
   cart.itemsPrice = toPrice(cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0))
-  cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10)
+  cart.shippingPrice = cart.itemsPrice > 500 ? toPrice(0) : toPrice(10)
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice)
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
   const dispatch = useDispatch()
@@ -31,22 +32,24 @@ function PlaceOrderScreen(props) {
         dispatch(createOrder({...cart, orderItems: cart.cartItems}))
   }
   return (
-    <div classname="row top">
-      <div classname="col-2">
+    <div>
+    <CheckoutSteps step={3}/>
+    <div className="row top">
+      <div className="col-2">
             <ul>
                 <li>
-                    <div classname="card card-body">
+                    <div className="card card-body">
                         <h2>Shipping</h2>
                         <p>
-                            {/* <strong>Name: </strong>{cart.shippingAddress.fullName}<br/>
+                            <strong>Name: </strong>{cart.shippingAddress.fullName}<br/>
                             <strong>Address: </strong>{cart.shippingAddress.address},
                             {cart.shippingAddress.city},{cart.shippingAddress.postalCode},
-                            {cart.shippingAddress.country} */}
+                            {cart.shippingAddress.country}
                         </p>
                     </div>
                 </li>
                 <li>
-                 <div classname="card card-body">
+                 <div className="card card-body">
                         <h2>Payment</h2>
                         <p>
                             <strong>Method: </strong>{cart.paymentMethod}<br/>
@@ -54,7 +57,7 @@ function PlaceOrderScreen(props) {
                 </div>
                 </li>
                  <li>
-                    <div classname="card card-body">
+                    <div className="card card-body">
                         <h2>Order Items</h2>
                         <ul className="cart-list-container">
                     <li>
@@ -89,16 +92,16 @@ function PlaceOrderScreen(props) {
                 </li>
             </ul>
       </div>
-      <div classname="col-1">
-        <div className="card card-body">
+      <div className="col-1">
+        <div className="details-action">
             <ul>
                 <li>
-                    <h2>Order SUmmary</h2>
+                    <h2>Order Summary</h2>
                 </li>
                 <li>
                     <div className="row">
                         <div>Items</div>
-                        <div>Rs.{cart.itemPrice} </div>
+                        <div>Rs.{cart.itemsPrice} </div>
                     </div>
                 </li>
                  <li>
@@ -124,9 +127,10 @@ function PlaceOrderScreen(props) {
                 </li>
                     {loading && <LoadingBox />}
                     {error && <MessageBox variant="failed">{error}</MessageBox>}
-            </ul>
-        </div> 
-      </div>
+                </ul>
+                </div> 
+            </div>
+        </div>
     </div>
   )
 }

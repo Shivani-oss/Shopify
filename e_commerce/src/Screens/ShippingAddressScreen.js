@@ -14,9 +14,9 @@ function ShippingAddressScreen(props) {
     const dispatch = useDispatch()
     
 
-    if (!userInfo) {
-        props.history.push('/signin');
-    }
+    // if (!userInfo) {
+    //     props.history.push('/signin');
+    // }
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -29,29 +29,29 @@ function ShippingAddressScreen(props) {
             <CheckoutSteps step={1}/>
             <form onSubmit={submitHandler}>
                 <div className="form-containerShipping">
-                <div>
+                <div className="validation">
                     <label htmlFor="fullName">Full Name</label>
                     <input type="text" id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} required></input>
                 </div>
-                <div>
+                <div className="validation">
                     <label htmlFor="address">Address</label>
                     <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} required></input>
                 </div>
-                <div>
+                <div className="validation">
                     <label htmlFor="city">City</label>
                     <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)} required></input>
                 </div>
-                <div>
+                <div className="validation">
                     <label htmlFor="postalCode">Postal Code</label>
                     <input type="text" id="postalCode" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required></input>
                 </div>
-                <div> 
+                <div className="validation">
                     <label htmlFor="country">Country</label>
                     <input type="text" id="country" value={country} onChange={(e) => setCountry(e.target.value)} required></input>
                 </div>
                 <div>
                     <label/>
-                        <button className="button primary" style={{ width: 150, marginLeft: -45, marginTop: 25}} type="submit">
+                    <button className="button primary" style={{ width: 150, marginLeft: 150, marginTop: 25}} type="submit">
                         Continue
                     </button>
                 </div>

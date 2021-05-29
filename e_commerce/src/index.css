@@ -424,9 +424,14 @@ input {
    color: #000000;
    font-family: poppins;
    text-transform: uppercase;
-   margin: 4rem;
    font-weight: bold;
    font-size: 15px;
+   margin: 2rem;
+   display: inline-block;
+   float: left;
+   clear: left;
+   width: 180px;
+   text-align: right;
 }
 
 .form-containerShipping input{
@@ -436,13 +441,34 @@ input {
   width: 1000px;
   height:20px;
   font-size:16px;
-  display: block;
-  margin : 0 auto;
+  margin : 0 auto 1rem;
+  display: inline-block;
+  float: left;
  
 }
 
-.form-payment {
-  width: 100%;
-  padding: 3rem;
 
+.form-payment {
+  width: 1000px;
+  padding: 10rem;
+  font-family: poppins;
+  font-weight: bold;
+  margin: 0 auto 2rem;
+}
+
+.form-payment label{
+  display: inline-block;
+  margin: 0 auto 2rem;
+}
+
+.form-payment input{
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+  height: 2rem;
+}
+
+.validation {
+  display: flex;
+  flex-direction: row;
 }

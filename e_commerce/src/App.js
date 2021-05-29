@@ -24,9 +24,9 @@ function App() {
           <Route path="/signin" component={SigninScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/shipping" component={ShippingAddressScreen} />
-          <Route path="/payment" component={PaymentMethodScreen} />
           <Route path="/placeorder" component={PlaceOrderScreen} />
-          <Route path="shipping/order/:id" component={OrderScreen} />
+          <Route path="/payment" component={PaymentMethodScreen} />
+          <Route path="/order/:id" component={OrderScreen} />
         </Switch>
       </div>
     </Router>
