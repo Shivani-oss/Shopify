@@ -34,39 +34,33 @@ function PlaceOrderScreen(props) {
   return (
     <div>
     <CheckoutSteps step={3}/>
-    <div className="row top">
-      <div className="col-2">
+    <div className="order">
             <ul>
                 <li>
-                    <div className="card card-body">
+                    <div className="order-info">
                         <h2>Shipping</h2>
                         <p>
                             <strong>Name: </strong>{cart.shippingAddress.fullName}<br/>
-                            <strong>Address: </strong>{cart.shippingAddress.address},
-                            {cart.shippingAddress.city},{cart.shippingAddress.postalCode},
-                            {cart.shippingAddress.country}
+                            <strong>Address: </strong>{cart.shippingAddress.address}, 
+                            &nbsp;{cart.shippingAddress.city}, &nbsp;{cart.shippingAddress.postalCode},
+                            &nbsp;{cart.shippingAddress.country}
                         </p>
                     </div>
                 </li>
                 <li>
-                 <div className="card card-body">
+                <div className="order-info">
                         <h2>Payment</h2>
                         <p>
                             <strong>Method: </strong>{cart.paymentMethod}<br/>
                         </p>
                 </div>
                 </li>
-                 <li>
-                    <div className="card card-body">
+                <li>
+                <div className="order-info">
                         <h2>Order Items</h2>
-                        <ul className="cart-list-container">
+                    <ul className="order-list">
                     <li>
-                        <h1>
-                        Shopping Cart
-                        </h1>
-                        <div>
-                        Price
-                        </div>
+
                     </li>
                     {
                         cart.cartItems.map(item =>
@@ -79,9 +73,10 @@ function PlaceOrderScreen(props) {
                                     <Link to={"/product/" + item.product}>
                                         {item.name}
                                     </Link>
+                                    <p>Qty: &nbsp; {item.qty}</p>
                                 </div>
                             </div>
-                            <div className="cart-price">
+                            <div>
                                 {item.qty} x Rs. {item.price} = Rs. {item.qty * item.price}
                             </div>
                             </li>
@@ -91,35 +86,29 @@ function PlaceOrderScreen(props) {
                     </div>
                 </li>
             </ul>
-      </div>
-      <div className="col-1">
-        <div className="details-action">
+        <div className="order-action">
             <ul>
                 <li>
                     <h2>Order Summary</h2>
                 </li>
                 <li>
-                    <div className="row">
-                        <div>Items</div>
-                        <div>Rs.{cart.itemsPrice} </div>
+                    <div className="order-price">
+                        <p>Items:  ₹{cart.itemsPrice} </p>
                     </div>
                 </li>
-                 <li>
-                    <div className="row">
-                        <div>Shippinjg</div>
-                        <div>Rs.{cart.shippingPrice} </div>
+                <li>
+                <div className="order-price">
+                    <p>Shipping:  ₹{cart.shippingPrice} </p>
+                </div>
+                </li>
+                <li>
+                <div className="order-price">
+                     <p>TaxRs:  ₹{cart.taxPrice} </p>
                     </div>
                 </li>
-                 <li>
-                    <div className="row">
-                        <div>Tax</div> 
-                        <div>Rs.{cart.taxPrice} </div>
-                    </div>
-                </li>
-                 <li>
-                    <div className="row">
-                        <div><strong>Order Total</strong></div>
-                        <div><strong>Rs.{cart.totalPrice}</strong></div>
+                <li>
+                <div className="order-price">
+                    <p><strong>OrderTotal: ₹{cart.totalPrice}</strong></p>
                     </div>
                 </li>
                 <li>
@@ -129,10 +118,9 @@ function PlaceOrderScreen(props) {
                     {error && <MessageBox variant="failed">{error}</MessageBox>}
                 </ul>
                 </div> 
-            </div>
         </div>
     </div>
-  )
+)
 }
 
 export default PlaceOrderScreen

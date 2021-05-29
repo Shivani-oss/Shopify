@@ -14,9 +14,9 @@ function ShippingAddressScreen(props) {
     const dispatch = useDispatch()
     
 
-    // if (!userInfo) {
-    //     props.history.push('/signin');
-    // }
+    if (!userInfo) {
+        props.history.push('/signin');
+    }
 
     const submitHandler = (e) => {
         e.preventDefault()

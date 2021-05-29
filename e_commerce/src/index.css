@@ -411,6 +411,13 @@ input {
   font-size: 2rem;
 }
 
+
+.validation {
+  display: flex;
+  flex-direction: row;
+}
+
+
 /*Shipping Form*/
 
 .form-containerShipping{
@@ -447,13 +454,15 @@ input {
  
 }
 
+/*Payment Form*/
 
 .form-payment {
   width: 1000px;
   padding: 10rem;
   font-family: poppins;
   font-weight: bold;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2rem; 
+
 }
 
 .form-payment label{
@@ -468,7 +477,72 @@ input {
   height: 2rem;
 }
 
-.validation {
+/*Order Screen*/
+
+.order {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 2rem;
+  margin: 2rem;
+}
+
+.order ul{
+  list-style-type: none;
+}
+
+.order-info {
+  flex: 5 5 30rem;
+  margin-top: 35px;
+  font-size: 2rem;
+  color: #44474b;
+  font-family: poppins;
+}
+.order-list {
+  padding: 0;
+  list-style-type: none;
+  font-family: poppins;
+  color: #44474b;
+  width: 800px;
+}
+
+.order-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  margin: 0.5rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+
+.order-list li img {
+  max-width: 11rem;
+  max-height: 11rem;
+  padding: 1rem;
+  object-fit: cover;
+}
+
+.order-action {
+  flex: 4 4 25rem;
+  border: 0.1rem #808080 solid;
+  border-radius: 1rem;
+  background-color:aliceblue;
+  font-family: Arial;
+  letter-spacing:.5px;
+  margin-top: 60px;
+}
+.order-action li {
+  margin-bottom: 1rem;
+}
+
+.order-price{
+  font-size: 17px;
+}
+
+.order-action button{
+  display: flex;
+  float: left;
+  width: 500px;
+  justify-content: center;
+  margin-bottom: 20px;
 }

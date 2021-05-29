@@ -16,6 +16,7 @@ function PaymentMethodScreen(props) {
         dispatch(savePaymentMethod(paymentMethod))
         props.history.push('/placeorder')
     }
+    
     return (
         <div >
             <CheckoutSteps step={2} />

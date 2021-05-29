@@ -30,4 +30,5 @@ const reducer = combineReducers({
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose
 const store = createStore(reducer, intialState, composeEnhancer(applyMiddleware(thunk))) //async action - thunk
 
-export default store
+export default store 
+
