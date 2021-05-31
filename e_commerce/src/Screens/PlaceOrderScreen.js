@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux' 
 import {Link} from 'react-router-dom'
-import { createOrder } from '../reducer/orderAction.js'
+import { createOrder } from '../reducer/orderAction'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
 import { ORDER_CREATE_RESET } from '../reducer/orderConstant.js'
@@ -93,30 +93,33 @@ function PlaceOrderScreen(props) {
                 </li>
                 <li>
                     <div className="order-price">
-                        <p>Items:  ₹{cart.itemsPrice} </p>
+                        <p>Items:&nbsp;₹{cart.itemsPrice} </p>
                     </div>
                 </li>
                 <li>
                 <div className="order-price">
-                    <p>Shipping:  ₹{cart.shippingPrice} </p>
+                    <p>Shipping:   ₹{cart.shippingPrice} </p>
                 </div>
                 </li>
                 <li>
                 <div className="order-price">
-                     <p>TaxRs:  ₹{cart.taxPrice} </p>
+                     <p>TaxRs:   ₹{cart.taxPrice} </p>
                     </div>
                 </li>
                 <li>
                 <div className="order-price">
-                    <p><strong>OrderTotal: ₹{cart.totalPrice}</strong></p>
+                    <p><strong>OrderTotal:  ₹{cart.totalPrice}</strong></p>
                     </div>
                 </li>
-                <li>
-                    <button type="button" className="primary button" onClick={placeOrderHandler} disabled={cart.cartItems.length === 0}>Place Order</button>
-                </li>
-                    {loading && <LoadingBox />}
-                    {error && <MessageBox variant="failed">{error}</MessageBox>}
-                </ul>
+                  </ul>
+                  <div className="order-button"> 
+                      <button type="button" className="primary button" onClick={placeOrderHandler} disabled={cart.cartItems.length === 0}>Place Order</button>
+
+                      {loading && <LoadingBox />}
+                      {error && <MessageBox variant="failed">{error}</MessageBox>}
+                  </div>
+                   
+                
                 </div> 
         </div>
     </div>

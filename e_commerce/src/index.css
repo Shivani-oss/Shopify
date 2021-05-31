@@ -523,13 +523,14 @@ input {
 }
 
 .order-action {
-  flex: 4 4 25rem;
+  flex: 1 1 5rem;
   border: 0.1rem #808080 solid;
   border-radius: 1rem;
   background-color:aliceblue;
-  font-family: Arial;
   letter-spacing:.5px;
-  margin-top: 60px;
+  margin-top: 50px;
+  font-family:Poppins;
+ 
 }
 .order-action li {
   margin-bottom: 1rem;
@@ -540,9 +541,34 @@ input {
 }
 
 .order-action button{
-  display: flex;
-  float: left;
-  width: 500px;
+  display: block;
+  width: 100%;
   justify-content: center;
-  margin-bottom: 20px;
+}
+
+.order-button{
+  padding: 0 2rem 2rem 2rem;
+}
+
+.order-Id{
+  margin-top: 100px;
+  margin-left: 80px;
+  font-family: Arial;
+  letter-spacing: 2;
+  font-weight: 20;
+} 
+
+.order-paypal{
+  max-width: 320px;
+}
+
+.order-action-payment {
+  width: 400px;
+  border: 0.1rem #808080 solid;
+  border-radius: 1rem;
+  background-color: aliceblue;
+  letter-spacing: .5px;
+  margin-top: 50px;
+  font-family: Poppins;
+
 }

@@ -17,12 +17,12 @@ const orderSchema = new mongoose.Schema({
         country: { type: String, recquired: true },
     },
     paymentMethod: { type: String, recquired: true },
-    // paymentResults: {
-    //     id: String, 
-    //     status: String, 
-    //     update_time: String, 
-    //     email_address: String
-    // },
+    paymentResults: {
+        id: String, 
+        status: String, 
+        update_time: String, 
+        email_address: String
+    },
     itemsPrice: { type: Number, recquired: true },
     shippingPrice: { type: Number, recquired: true },
     taxPrice: { type: Number, recquired: true },

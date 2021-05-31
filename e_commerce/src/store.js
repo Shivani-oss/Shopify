@@ -8,7 +8,7 @@ import {
     userSigninReducer,
     userRegisterReducer,
   } from './reducer/userReducer'
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer} from './reducer/orderReducer'
+import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderHistoryReducer} from './reducer/orderReducer'
    
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem("cartItems")) : []
 const shippingAddress = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
@@ -24,7 +24,8 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
-    orderPay: orderPayReducer
+    orderPay: orderPayReducer,
+    orderHistory: orderHistoryReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose

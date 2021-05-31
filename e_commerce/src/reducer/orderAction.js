@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import { CART_EMPTY } from './cartConstant'
-import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from './orderConstant'
+import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_HISTORY_LIST_REQUEST, ORDER_HISTORY_LIST_SUCCESS, ORDER_HISTORY_LIST_FAIL, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from './orderConstant'
 
 export const createOrder = (order) => async (dispatch, getState) => {
     dispatch({ type: ORDER_CREATE_REQUEST, payload: order })
@@ -33,13 +33,13 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
         dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data })
     } catch (error) {
         const message = error.response && error.response.data.message
-            ? error.response.data.message : error.response
+            ? error.response.data.message : error.message
         dispatch({ type: ORDER_CREATE_FAIL, payload: message })
     }
 }
 
 export const payOrder = (order, paymentResult) => async (dispatch, getState) => {
-    
+
     dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult }})
     const { userSignin: { userInfo } } = getState()
     try {
@@ -51,5 +51,20 @@ export const payOrder = (order, paymentResult) => async (dispatch, getState) => 
         const message = error.response && error.response.data.message
             ? error.response.data.message : error.response
         dispatch({ type: ORDER_PAY_FAIL, payload: message })
+    }
+}
+
+export const listOrderHistory = () => async (dispatch, getState) => {
+    dispatch({ type: ORDER_HISTORY_LIST_REQUEST})
+    const { userSignin: { userInfo } } = getState()
+    try {
+        const { data } = await Axios.get('api/orders/history',{
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        })
+        dispatch({ type: ORDER_HISTORY_LIST_SUCCESS, payload: data })
+    } catch (error) {
+        const message = error.response && error.response.data.message
+            ? error.response.data.message : error.response
+        dispatch({ type: ORDER_HISTORY_LIST_FAIL, payload: message })
     }
 }

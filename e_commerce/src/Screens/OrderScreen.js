@@ -15,7 +15,6 @@ function OrderScreen(props) {
     const [sdkReady, setSdkReady] = useState(false)
     const orderDetails = useSelector(state => state.orderDetails)
     const { loading, order, error } = orderDetails
-
     const orderPay = useSelector(state => state.orderPay)
     const { loading: loadingPay, error: errorPay, success: successPay } = orderPay
     const dispatch = useDispatch()
@@ -45,8 +44,7 @@ function OrderScreen(props) {
             }
         }
 
-
-    }, [dispatch, order, orderId, sdkReady, successPay])
+    }, [dispatch, order, orderId, sdkReady])
 
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(order, paymentResult))
@@ -56,18 +54,17 @@ function OrderScreen(props) {
         : error ? (<MessageBox varinat='danger'>{error}</MessageBox>)
             : (
                 <>
-                    <h1>Order {order._id}</h1>
-                    <div classname="row top">
-                        <div classname="col-2">
+                    <h1 className="order-Id">OrderId:  {order._id}</h1>
+                    <div className="order">
                             <ul>
                                 <li>
-                                    <div classname="card card-body">
+                                <div className="order-info">
                                         <h2>Shipping</h2>
                                         <p>
-                                            <strong>Name: </strong>{order.shippingAddress.fullName}<br />
+                                            <strong>Name: </strong>{order.shippingAddress.fullName}<br/>
                                             <strong>Address: </strong>{order.shippingAddress.address},
-                            {order.shippingAddress.city},{order.shippingAddress.postalCode},
-                            {order.shippingAddress.country}
+                            &nbsp;{order.shippingAddress.city},&nbsp;{order.shippingAddress.postalCode},
+                            &nbsp;{order.shippingAddress.country}
                                         </p>
                                         {order.isDelivered ?
                                             (<MessageBox variant="success">Delivered at {order.deliveredAt}</MessageBox>)
@@ -76,28 +73,22 @@ function OrderScreen(props) {
                                     </div>
                                 </li>
                                 <li>
-                                    <div classname="card card-body">
+                                <div className="order-info">
                                         <h2>Payment</h2>
                                         <p>
                                             <strong>Method: </strong>{order.paymentMethod}<br />
                                         </p>
                                         {order.isPaid ?
-                                            (<MessageBox variant="success">Paid at {order.isPaid}</MessageBox>)
+                                            (<MessageBox variant="success">Paid at {order.paidAt}</MessageBox>)
                                             : (<MessageBox varinat="danger">Not Paid</MessageBox>)
                                         }
                                     </div>
                                 </li>
                                 <li>
-                                    <div classname="card card-body">
+                                <div className="order-info">
                                         <h2>Order Items</h2>
-                                        <ul className="cart-list-container">
+                                        <ul className="order-list">
                                             <li>
-                                                <h1>
-                                                    Shopping Cart
-                                                </h1>
-                                                <div>
-                                                    Price
-                                                </div>
                                             </li>
                                             {
                                                 order.orderItems.map(item =>
@@ -110,10 +101,11 @@ function OrderScreen(props) {
                                                                 <Link to={"/product/" + item.product}>
                                                                     {item.name}
                                                                 </Link>
+                                                                <p>Qty: &nbsp; {item.qty}</p>
                                                             </div>
                                                         </div>
                                                         <div className="cart-price">
-                                                            {item.qty} x Rs. {item.price} = Rs. {item.qty * item.price}
+                                                            ₹{item.qty * item.price}
                                                         </div>
                                                     </li>
                                                 )
@@ -122,47 +114,42 @@ function OrderScreen(props) {
                                     </div>
                                 </li>
                             </ul>
-                        </div>
-                        <div classname="col-1">
-                            <div className="card card-body">
-                                <ul>
-                                    <li>
-                                        <h2>Order SUmmary</h2>
-                                    </li>
-                                    <li>
-                                        <div className="row">
-                                            <div>Items</div>
-                                            <div>Rs.{order.itemPrice} </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="row">
-                                            <div>Shippinjg</div>
-                                            <div>Rs.{order.shippingPrice} </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="row">
-                                            <div>Tax</div>
-                                            <div>Rs.{order.taxPrice} </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="row">
-                                            <div><strong>Order Total</strong></div>
-                                            <div><strong>Rs.{order.totalPrice}</strong></div>
-                                        </div>
-                                    </li>
+                        <div className="order-action-payment">
+                            <ul>
+                                <li>
+                                    <h2>Order Summary</h2>
+                                </li>
+                                <li>
+                                    <div className="order-price">
+                                        <p>Items:&nbsp;₹{order.itemsPrice} </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="order-price">
+                                        <p>Shipping:   ₹{order.shippingPrice} </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="order-price">
+                                        <p>TaxRs:   ₹{order.taxPrice} </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="order-price">
+                                        <p><strong>OrderTotal:  ₹{order.totalPrice}</strong></p>
+                                    </div>
+                                </li>
+                                   
                                     {
                                         !order.isPaid && (
-                                            <li>
+                                            <li className="order-paypal">
                                                 {
                                                     !sdkReady ? (<LoadingBox />)
                                                         : (
                                                             <>
                                                                 { errorPay && (<MessageBox variant="danger">{errorPay}</MessageBox>)}
                                                                 { loadingPay && (<LoadingBox />)}
-                                                                <PayPalButton onClick={this.handlePaypal.bind(this)} onSuccess={successPaymentHandler}> Complete Amount={order.totalPrice} </PayPalButton>
+                                                            <PayPalButton  onSuccess={successPaymentHandler} amount={order.totalPrice}> Complete  </PayPalButton>
                                                             </>
                                                         )
                                                 }
@@ -171,9 +158,8 @@ function OrderScreen(props) {
                                         )
                                     }
                                 </ul>
-                            </div>
                         </div>
-                    </div>
+                       </div>
                 </>
             )
 }
