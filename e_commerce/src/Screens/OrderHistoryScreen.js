@@ -9,10 +9,10 @@ function OrderHistoryScreen(props) {
     const { loading, orders, error } = orderHistoryList
     const dispatch = useDispatch()
     
-    useEffect(() => {
-        dispatch(listOrderHistory())
+    // useEffect(() => {
+    //     dispatch(listOrderHistory())
         
-    }, [dispatch])
+    // }, [dispatch])
     
     return (
         <div>

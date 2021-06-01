@@ -7,6 +7,8 @@ import thunk from 'redux-thunk'
 import {
     userSigninReducer,
     userRegisterReducer,
+    userDetailReducer,
+    userProfileUpdateReducer,
   } from './reducer/userReducer'
 import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderHistoryReducer} from './reducer/orderReducer'
    
@@ -25,7 +27,9 @@ const reducer = combineReducers({
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
-    orderHistory: orderHistoryReducer
+    orderHistory: orderHistoryReducer,
+    userDetails: userDetailReducer,
+    userUpdateProfile: userProfileUpdateReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose

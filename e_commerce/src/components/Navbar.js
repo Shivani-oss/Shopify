@@ -109,6 +109,7 @@ function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem className={classes.screen} onClick={handleClose} ><Link style={{textDecoration: 'none', color: 'black'}} to="/order/history">Order History</Link></MenuItem>
+                 <MenuItem className={classes.screen} onClick={handleClose} ><Link style={{ textDecoration: 'none', color: 'black' }} to="/profile">Profile</Link></MenuItem>
                 <MenuItem className={classes.screen} onClick={handleClose, signoutHandler} >Logout</MenuItem>
               </Menu>
             </div>

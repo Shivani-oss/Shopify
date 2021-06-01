@@ -10,6 +10,7 @@ import PlaceOrderScreen from "./Screens/PlaceOrderScreen"
 import OrderScreen from "./Screens/OrderScreen"
 import ShippingAddressScreen from './Screens/ShippingAddressScreen'
 import OrderHistoryScreen from './Screens/OrderHistoryScreen'
+import ProfileScreen from './Screens/ProfileScreen'
 
 
 
@@ -20,7 +21,6 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/product/:id" component={ProductScreen} />
-          <Route path="/" exact={true} component={HomeScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/signin" component={SigninScreen} />
           <Route path="/register" component={RegisterScreen} />
@@ -29,6 +29,8 @@ function App() {
           <Route path="/payment" component={PaymentMethodScreen} />
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/order/history" component={OrderHistoryScreen} />
+          <Route  path="/profile" component={ProfileScreen} />
+          <Route path="/" exact={true} component={HomeScreen} />
         </Switch>
       </div>
     </Router>

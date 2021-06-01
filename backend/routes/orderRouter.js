@@ -1,14 +1,14 @@
 import express from 'express'
-import {isAuth} from '../utils.js'
+import isAuth from '../utils.js'
 import expressAsyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
 
 const orderRouter = express.Router()
 
-orderRouter.get('/history', expressAsyncHandler(async (req, res) => {
-    const orders = await Order.find({ user: req.user._id})
-    res.send(orders)
-}))
+// orderRouter.get('/history', expressAsyncHandler(async (req, res) => {
+//     const orders = await Order.find({ user: req.user._id})
+//     res.send(orders)
+// }))
 
 orderRouter.post('/', expressAsyncHandler(async (req, res) => {
     if (req.body.orderItems.length === 0) {
@@ -30,7 +30,7 @@ orderRouter.post('/', expressAsyncHandler(async (req, res) => {
 })
 )
 
-orderRouter.get('/:id', expressAsyncHandler(async (req, res) => {
+orderRouter.get('/:id',expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id)
     if (order) {
         res.send(order)
